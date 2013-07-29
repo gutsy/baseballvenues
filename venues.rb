@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'net/http'
+require 'json'
 
 $key= "7pmrmbkzzbwur9wzazsfsjmz"
 
@@ -15,5 +16,9 @@ get '/venue/:team' do
 	url = 'http://api.espn.com/v1/sports/baseball/mlb/teams/' + id + '?enable=venues&apikey=' + $key
 	resp = Net::HTTP.get_response(URI.parse(url))
 	data = resp.body
-	"Looking for the venue of the #{params[:team]}, which has id " + id + ", and here's the data returned: " + data	
+	parsed = JSON.parse(data)
+
+	#venue parsed["sports"]["venues"]
+	"Looking for the venue of the #{params[:team]}, which has id " + id + ", and here's the data returned: " + data
+
 end
