@@ -1,6 +1,6 @@
 require 'sinatra'
 
-$key= ""
+$key= "7pmrmbkzzbwur9wzazsfsjmz"
 
 ids = {
 	'reds' => '17',
