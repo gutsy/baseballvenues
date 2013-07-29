@@ -15,7 +15,5 @@ get '/venue/:team' do
 	url = 'http://api.espn.com/v1/sports/baseball/mlb/teams/' + id + '?enable=venues&apikey=' + $key
 	resp = Net::HTTP.get_response(URI.parse(url))
 	data = resp.body
-	"Looking for the venue of the #{params[:team]}, which has id " + id
-	
-
+	"Looking for the venue of the #{params[:team]}, which has id " + id + ", and here's the data returned: " + data	
 end
