@@ -1,6 +1,6 @@
 require 'sinatra'
 
-$key= ""
+$key= "7pmrmbkzzbwur9wzazsfsjmz"
 
 ids = {
 	'reds' => '17',
@@ -10,6 +10,9 @@ ids = {
 
 get '/venue/:team' do
 
-	$id = ids[params[:team]]
-	"Looking for the venue of the #{params[:team]}, which has id " + $id
+	id = ids[params[:team]]
+	url = 'http://api.espn.com/v1/sports/baseball/mlb/teams/' + id + '?enable=venues&apikey=' + $key
+	"Looking for the venue of the #{params[:team]}, which has id " + id
+	
+
 end
