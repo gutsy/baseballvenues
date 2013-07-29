@@ -1,6 +1,8 @@
 require 'sinatra'
+require 'net/http'
+require 'json'
 
-$key= "7pmrmbkzzbwur9wzazsfsjmz"
+$key= ""
 
 ids = {
 	'reds' => '17',
@@ -10,6 +12,13 @@ ids = {
 
 get '/venue/:team' do
 
-	$id = ids[params[:team]]
-	"Looking for the venue of the #{params[:team]}, which has id " + $id
+	id = ids[params[:team]]
+	url = 'http://api.espn.com/v1/sports/baseball/mlb/teams/' + id + '?enable=venues&apikey=' + $key
+	resp = Net::HTTP.get_response(URI.parse(url))
+	data = resp.body
+	parsed = JSON.parse(data)
+
+	#venue parsed["sports"]["venues"]
+	"Looking for the venue of the #{params[:team]}, which has id " + id + ", and here's the data returned: " + data
+
 end
